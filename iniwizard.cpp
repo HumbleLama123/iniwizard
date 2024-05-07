@@ -238,3 +238,33 @@ bool iniwizard::manipulator::contains(
     return file_content.namespace_content.count(namespace_name)
         && file_content.namespace_content[namespace_name].count(string_name);
 }
+
+void iniwizard::manipulator::add(
+    const char *string_name, const char *string_value
+)
+{
+    file_content.string_content.insert(std::make_pair(string_name, string_value)
+    );
+}
+
+void iniwizard::manipulator::add(
+    const char *namespace_name
+)
+{
+    file_content.namespace_content.insert(
+        make_pair(namespace_name, std::map<std::string, std::string>())
+    );
+}
+
+void iniwizard::manipulator::add(
+    const char *namespace_name, const char *string_name,
+    const char *string_value
+)
+{
+    if (contains(namespace_name, iniwizard_types::iniwizard_namespace))
+        add(namespace_name);
+
+    file_content.namespace_content[namespace_name].insert(
+        std::make_pair(string_name, string_value)
+    );
+}

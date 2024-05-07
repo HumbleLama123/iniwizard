@@ -25,6 +25,14 @@ namespace iniwizard
         bool contains(const char *name, const iniwizard_types &type);
 
         bool contains(const char *namespace_name, const char *string_name);
+
+        void add(const char *string_name, const char *string_value);
+
+        void add(const char *namespace_name);
+
+        void
+            add(const char *namespace_name, const char *string_name,
+                const char *string_value);
     };
 } // namespace iniwizard
 
