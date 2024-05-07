@@ -1,5 +1,6 @@
 # iniwizard
 ### Example
+main.cpp:
 ```cpp
 #include "iniwizard.hpp"
 
@@ -28,6 +29,7 @@ int main()
     return EXIT_SUCCESS;
 }
 ```
+test.ini:
 ```ini
 string_name = "string_value"
 
