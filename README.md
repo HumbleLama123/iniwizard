@@ -62,7 +62,7 @@ int main()
 ```cpp
 #include "iniwizard.hpp"
 
-#include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -78,6 +78,47 @@ int main()
 
     return EXIT_SUCCESS;
 }
+```
+### Removing
+```cpp
+#include "iniwizard.hpp"
+
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+    iniwizard::manipulator m;
+
+    m.add("string_name", "string_value");
+    m.add("namespace_name", "string_name", "string_value");
+    m.add("namespace_name1", "string_name", "string_value");
+
+    m.remove("string_name", iniwizard::iniwizard_types::iniwizard_string);
+
+    m.write("test.ini");
+
+    return EXIT_SUCCESS;
+}
+```
+Output:
+```ini
+[namespace_name]
+    string_name = "string_value"
+
+[namespace_name1]
+    string_name = "string_value"
+```
+Instead of:
+```ini
+string_name = "string_value"
+
+[namespace_name]
+    string_name = "string_value"
+
+[namespace_name1]
+    string_name = "string_value"
 ```
 ### Compilation
 ```

@@ -269,6 +269,23 @@ void iniwizard::manipulator::add(
     );
 }
 
+void iniwizard::manipulator::remove(
+    const char *name, const iniwizard_types &type
+)
+{
+    if (type == iniwizard_types::iniwizard_string)
+        file_content.string_content.erase(name);
+    else if (type == iniwizard_types::iniwizard_namespace)
+        file_content.namespace_content.erase(name);
+}
+
+void iniwizard::manipulator::remove(
+    const char *namespace_name, const char *string_name
+)
+{
+    file_content.namespace_content[namespace_name].erase(string_name);
+}
+
 void iniwizard::manipulator::write(
     const char *path
 )
@@ -278,7 +295,7 @@ void iniwizard::manipulator::write(
     for (const auto &i : file_content.string_content)
         o << i.first + " = \"" + i.second + "\"\n";
 
-    o << '\n';
+    if (!file_content.string_content.empty()) o << '\n';
 
     for (const auto &i : file_content.namespace_content)
     {

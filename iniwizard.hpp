@@ -34,6 +34,10 @@ namespace iniwizard
             add(const char *namespace_name, const char *string_name,
                 const char *string_value);
 
+        void remove(const char *name, const iniwizard_types &type);
+
+        void remove(const char *namespace_name, const char *string_name);
+
         void write(const char *path);
     };
 } // namespace iniwizard
