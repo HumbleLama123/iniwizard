@@ -230,3 +230,11 @@ bool iniwizard::manipulator::contains(
 
     return output;
 }
+
+bool iniwizard::manipulator::contains(
+    const char *namespace_name, const char *string_name
+)
+{
+    return file_content.namespace_content.count(namespace_name)
+        && file_content.namespace_content[namespace_name].count(string_name);
+}
