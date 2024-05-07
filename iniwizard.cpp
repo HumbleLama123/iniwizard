@@ -268,3 +268,25 @@ void iniwizard::manipulator::add(
         std::make_pair(string_name, string_value)
     );
 }
+
+void iniwizard::manipulator::write(
+    const char *path
+)
+{
+    std::ofstream o(path);
+
+    for (const auto &i : file_content.string_content)
+        o << i.first + " = \"" + i.second + "\"\n";
+
+    o << '\n';
+
+    for (const auto &i : file_content.namespace_content)
+    {
+        o << '[' + i.first + "]\n";
+
+        for (const auto &j : i.second)
+            o << "    " << j.first + " = \"" + j.second + "\"\n";
+
+        o << '\n';
+    }
+}

@@ -34,7 +34,7 @@ test.ini:
 string_name = "string_value"
 
 [namespace_name]
-string_name = "string_value"
+    string_name = "string_value"
 ```
 main.cpp(Without file parsing):
 ```cpp
@@ -54,6 +54,27 @@ int main()
 
     cout << m.read("string_name") << endl
          << m.read("namespace_name", "string_name") << endl;
+
+    return EXIT_SUCCESS;
+}
+```
+### Writing file
+```cpp
+#include "iniwizard.hpp"
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    iniwizard::manipulator m;
+
+    m.add("string_name", "string_value");
+    m.add("namespace_name", "string_name", "string_value");
+    m.add("namespace_name1", "string_name", "string_value");
+
+    m.write("test.ini");
 
     return EXIT_SUCCESS;
 }
