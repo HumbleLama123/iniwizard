@@ -1,1 +1,1 @@
-# libinipp
+# iniwizard
