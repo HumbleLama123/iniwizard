@@ -96,6 +96,9 @@ int main()
     m.add("namespace_name1", "string_name", "string_value");
 
     m.remove("string_name", iniwizard::iniwizard_types::iniwizard_string);
+    m.remove(
+        "namespace_name1", iniwizard::iniwizard_types::iniwizard_namespace
+    );
 
     m.write("test.ini");
 
@@ -105,9 +108,6 @@ int main()
 Output:
 ```ini
 [namespace_name]
-    string_name = "string_value"
-
-[namespace_name1]
     string_name = "string_value"
 ```
 Instead of:
