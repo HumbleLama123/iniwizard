@@ -261,7 +261,7 @@ void iniwizard::manipulator::add(
     const char *string_value
 )
 {
-    if (contains(namespace_name, iniwizard_types::iniwizard_namespace))
+    if (!contains(namespace_name, iniwizard_types::iniwizard_namespace))
         add(namespace_name);
 
     file_content.namespace_content[namespace_name].insert(
