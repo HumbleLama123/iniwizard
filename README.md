@@ -15,12 +15,12 @@ int main()
     if (m.parse("test.ini"))
     {
         if (m.contains(
-                "string_name", iniwizard::iniwizard_types::iniwizard_string
+                "string_name", iniwizard::iniwizard_variables::iniwizard_string
             ))
             cout << m.read("string_name") << endl;
         if (m.contains(
                 "namespace_name",
-                iniwizard::iniwizard_types::iniwizard_namespace
+                iniwizard::iniwizard_containers::iniwizard_namespace
             )
             && m.contains("namespace_name", "string_name"))
             cout << m.read("namespace_name", "string_name") << endl;

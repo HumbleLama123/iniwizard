@@ -218,15 +218,25 @@ bool iniwizard::manipulator::parse(
 }
 
 bool iniwizard::manipulator::contains(
-    const char *name, const iniwizard::iniwizard_types &type
+    const char *name, const iniwizard_variables &type
 )
 {
     bool output = false;
 
-    if (type == iniwizard::iniwizard_types::iniwizard_string)
+    if (type == iniwizard_variables::iniwizard_string)
         output = file_content.string_content.count(name);
-    else if (type == iniwizard::iniwizard_types::iniwizard_namespace)
-        output = file_content.namespace_content.count(name);
+
+    return output;
+}
+
+bool iniwizard::manipulator::contains(
+    const char *name, const iniwizard_containers &type
+)
+{
+    bool output = false;
+
+    if (type == iniwizard_containers::iniwizard_namespace)
+        output = file_content.string_content.count(name);
 
     return output;
 }
@@ -261,7 +271,7 @@ void iniwizard::manipulator::add(
     const char *string_value
 )
 {
-    if (!contains(namespace_name, iniwizard_types::iniwizard_namespace))
+    if (!contains(namespace_name, iniwizard_containers::iniwizard_namespace))
         add(namespace_name);
 
     file_content.namespace_content[namespace_name].insert(
@@ -270,13 +280,19 @@ void iniwizard::manipulator::add(
 }
 
 void iniwizard::manipulator::remove(
-    const char *name, const iniwizard_types &type
+    const char *name, const iniwizard_variables &type
 )
 {
-    if (type == iniwizard_types::iniwizard_string)
+    if (type == iniwizard_variables::iniwizard_string)
         file_content.string_content.erase(name);
-    else if (type == iniwizard_types::iniwizard_namespace)
-        file_content.namespace_content.erase(name);
+}
+
+void iniwizard::manipulator::remove(
+    const char *name, const iniwizard_containers &type
+)
+{
+    if (type == iniwizard_containers::iniwizard_namespace)
+        file_content.string_content.erase(name);
 }
 
 void iniwizard::manipulator::remove(

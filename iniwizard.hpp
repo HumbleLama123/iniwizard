@@ -5,9 +5,13 @@
 
 namespace iniwizard
 {
-    enum iniwizard_types
+    enum iniwizard_variables
     {
-        iniwizard_string,
+        iniwizard_string
+    };
+
+    enum iniwizard_containers
+    {
         iniwizard_namespace
     };
 
@@ -22,7 +26,9 @@ namespace iniwizard
 
         bool parse(const char *file_path);
 
-        bool contains(const char *name, const iniwizard_types &type);
+        bool contains(const char *name, const iniwizard_variables &type);
+
+        bool contains(const char *name, const iniwizard_containers &type);
 
         bool contains(const char *namespace_name, const char *string_name);
 
@@ -34,7 +40,9 @@ namespace iniwizard
             add(const char *namespace_name, const char *string_name,
                 const char *string_value);
 
-        void remove(const char *name, const iniwizard_types &type);
+        void remove(const char *name, const iniwizard_variables &type);
+
+        void remove(const char *name, const iniwizard_containers &type);
 
         void remove(const char *namespace_name, const char *string_name);
 
