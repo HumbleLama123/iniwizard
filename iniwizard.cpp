@@ -5,7 +5,6 @@
 #include <fstream>
 #include <functional>
 #include <map>
-#include <string>
 #include <vector>
 
 inline struct file_content
@@ -161,22 +160,22 @@ inline std::string get_namespace_name(
 
 iniwizard::manipulator::manipulator() {}
 
-const char *iniwizard::manipulator::read(
-    const char *string_name
+std::string iniwizard::manipulator::read(
+    std::string string_name
 )
 {
     return file_content.string_content[string_name].c_str();
 }
 
-const char *iniwizard::manipulator::read(
-    const char *namespace_name, const char *string_name
+std::string iniwizard::manipulator::read(
+    std::string namespace_name, std::string string_name
 )
 {
     return file_content.namespace_content[namespace_name][string_name].c_str();
 }
 
 bool iniwizard::manipulator::parse(
-    const char *file_path
+    std::string file_path
 )
 {
     if (std::filesystem::exists(file_path))
@@ -218,7 +217,7 @@ bool iniwizard::manipulator::parse(
 }
 
 bool iniwizard::manipulator::contains(
-    const char *name, const iniwizard_variables &type
+    std::string name, const iniwizard_variables &type
 )
 {
     bool output = false;
@@ -230,7 +229,7 @@ bool iniwizard::manipulator::contains(
 }
 
 bool iniwizard::manipulator::contains(
-    const char *name, const iniwizard_containers &type
+    std::string name, const iniwizard_containers &type
 )
 {
     bool output = false;
@@ -242,7 +241,7 @@ bool iniwizard::manipulator::contains(
 }
 
 bool iniwizard::manipulator::contains(
-    const char *namespace_name, const char *string_name
+    std::string namespace_name, std::string string_name
 )
 {
     return file_content.namespace_content.count(namespace_name)
@@ -250,7 +249,7 @@ bool iniwizard::manipulator::contains(
 }
 
 void iniwizard::manipulator::add(
-    const char *string_name, const char *string_value
+    std::string string_name, std::string string_value
 )
 {
     file_content.string_content.insert(std::make_pair(string_name, string_value)
@@ -258,7 +257,7 @@ void iniwizard::manipulator::add(
 }
 
 void iniwizard::manipulator::add(
-    const char *namespace_name
+    std::string namespace_name
 )
 {
     file_content.namespace_content.insert(
@@ -267,8 +266,8 @@ void iniwizard::manipulator::add(
 }
 
 void iniwizard::manipulator::add(
-    const char *namespace_name, const char *string_name,
-    const char *string_value
+    std::string namespace_name, std::string string_name,
+    std::string string_value
 )
 {
     if (!contains(namespace_name, iniwizard_containers::iniwizard_namespace))
@@ -280,7 +279,7 @@ void iniwizard::manipulator::add(
 }
 
 void iniwizard::manipulator::remove(
-    const char *name, const iniwizard_variables &type
+    std::string name, const iniwizard_variables &type
 )
 {
     if (type == iniwizard_variables::iniwizard_string)
@@ -288,7 +287,7 @@ void iniwizard::manipulator::remove(
 }
 
 void iniwizard::manipulator::remove(
-    const char *name, const iniwizard_containers &type
+    std::string name, const iniwizard_containers &type
 )
 {
     if (type == iniwizard_containers::iniwizard_namespace)
@@ -296,14 +295,14 @@ void iniwizard::manipulator::remove(
 }
 
 void iniwizard::manipulator::remove(
-    const char *namespace_name, const char *string_name
+    std::string namespace_name, std::string string_name
 )
 {
     file_content.namespace_content[namespace_name].erase(string_name);
 }
 
 void iniwizard::manipulator::write(
-    const char *path
+    std::string path
 )
 {
     std::ofstream o(path);

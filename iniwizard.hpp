@@ -3,6 +3,8 @@
 #ifndef INIWIZARD_HPP
 #define INIWIZARD_HPP
 
+#include <string>
+
 namespace iniwizard
 {
     enum iniwizard_variables
@@ -20,33 +22,33 @@ namespace iniwizard
       public:
         manipulator();
 
-        const char *read(const char *string_name);
+        std::string read(std::string string_name);
 
-        const char *read(const char *namespace_name, const char *string_name);
+        std::string read(std::string namespace_name, std::string string_name);
 
-        bool parse(const char *file_path);
+        bool parse(std::string file_path);
 
-        bool contains(const char *name, const iniwizard_variables &type);
+        bool contains(std::string name, const iniwizard_variables &type);
 
-        bool contains(const char *name, const iniwizard_containers &type);
+        bool contains(std::string name, const iniwizard_containers &type);
 
-        bool contains(const char *namespace_name, const char *string_name);
+        bool contains(std::string namespace_name, std::string string_name);
 
-        void add(const char *string_name, const char *string_value);
+        void add(std::string string_name, std::string string_value);
 
-        void add(const char *namespace_name);
+        void add(std::string namespace_name);
 
         void
-            add(const char *namespace_name, const char *string_name,
-                const char *string_value);
+            add(std::string namespace_name, std::string string_name,
+                std::string string_value);
 
-        void remove(const char *name, const iniwizard_variables &type);
+        void remove(std::string name, const iniwizard_variables &type);
 
-        void remove(const char *name, const iniwizard_containers &type);
+        void remove(std::string name, const iniwizard_containers &type);
 
-        void remove(const char *namespace_name, const char *string_name);
+        void remove(std::string namespace_name, std::string string_name);
 
-        void write(const char *path);
+        void write(std::string path);
     };
 } // namespace iniwizard
 
